@@ -25,3 +25,31 @@ def classify_image(model, image):
    except Exception as e:
        st.error(f"Error during classification: {e}")
        return []
+
+def main():
+    st.set_page_config(page_title="Image Classifier", layout="centered")
+    st.title("Image Classifier using MobileNetV2")
+    st.write("Upload an image to classify lets Ai tell you what is in it.")
+
+    @st.cache_resource
+    def load_model_cached():
+        return load_model()
+    
+    model = load_model_cached()
+
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+    if uploaded_file is not None:
+        image = st.image(uploaded_file, caption='Uploaded Image.', use_container_width=True)
+        btn = st.button("Classify Image")
+        if btn:
+            with st.spinner('Classifying...'):
+                image = image.open(uploaded_file)
+                predictions = classify_image(image)
+
+                if predictions:
+                    for _,label, prob in predictions:
+                        st.write(f"**{label}**: {prob:.2%}")
+
+
+if __name__ == "__main__":
+    main()
