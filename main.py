@@ -44,7 +44,7 @@ def main():
         if btn:
             with st.spinner('Classifying...'):
                 image = image.open(uploaded_file)
-                predictions = classify_image(image)
+                predictions = classify_image(model,image)
 
                 if predictions:
                     for _,label, prob in predictions:
