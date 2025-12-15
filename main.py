@@ -8,11 +8,12 @@ def load_model():
     return MobileNetV2(weights='imagenet')
 
 def preprocess_image(image):
+    image = image.resize((224, 224))   
     image = np.array(image)
-    image = Image.resize(image, (224, 224))
     image = preprocess_input(image)
     image = np.expand_dims(image, axis=0)
     return image
+
 
 def classify_image(model, image):
     try:
