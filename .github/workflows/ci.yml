@@ -34,13 +34,13 @@ jobs:
 
       - name: Run basic import check
         run: |
-          python - <<EOF
-          import streamlit
-          import tensorflow
-          import numpy
-          from PIL import Image
-          print("All imports successful")
-          EOF
+           uv run python - <<EOF
+            import streamlit
+            import tensorflow
+            import numpy
+            from PIL import Image
+            print("All imports successful")
+            EOF
 
       - name: Lint main file (syntax check)
         run: |
