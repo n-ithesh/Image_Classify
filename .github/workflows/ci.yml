@@ -28,9 +28,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install uv
 
-      - name: Install dependencies using uv
+      - name: Install dependencies using uv lockfile
         run: |
-          uv pip install -r requirements.txt
+           uv sync
 
       - name: Run basic import check
         run: |
