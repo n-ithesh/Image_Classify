@@ -10,7 +10,7 @@ def load_model():
 
 def preprocess_image(image):
     image = np.array(image)
-    image = cv2.resize(image, (224, 224))
+    image = Image.resize(image, (224, 224))
     image = preprocess_input(image)
     image = np.expand_dims(image, axis=0)
     return image
